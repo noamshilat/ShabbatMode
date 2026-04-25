@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+    <string id="AppName">Shabbat Mode</string>
+
+    <string id="AboutTitle">About Shabbat Mode</string>
+    <string id="AboutBody">This watch face shows only the current time. It does not stop the watch's sensors or radios on its own.
+
+Before Shabbat:
+1. Switch to this watch face.
+2. Settings &gt; System &gt; Power Manager &gt; Battery Saver: enable Disconnect Phone, Disable Activity Tracking, Disable Wrist HR, Disable Bluetooth, Disable Wi-Fi. Turn Battery Saver ON.
+3. Settings &gt; Connectivity &gt; Airplane Mode: ON.
+4. Enable Do Not Disturb.
+
+After Havdalah, reverse these steps and switch back to your normal watch face.
+
+This app is a tool, not a Halachic ruling. Consult your Rav.</string>
+</strings>

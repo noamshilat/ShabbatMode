@@ -1,0 +1,9 @@
+project.manifest = manifest.xml
+
+base.sourcePath = source
+base.resourcePath = resources
+
+# English (default) is loaded from resources/strings.
+# Hebrew strings live under resources-heb/ and are auto-selected
+# when the device language is set to Hebrew.
+base.lang.heb.resourcePath = resources-heb

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+    <setting
+        propertyKey="@Properties.AboutText"
+        title="@Strings.AboutTitle">
+        <settingConfig type="alphaNumeric" readonly="true" />
+    </setting>
+</settings>

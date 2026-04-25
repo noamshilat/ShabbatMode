@@ -1,0 +1,21 @@
+# Connect IQ build artifacts
+bin/
+*.prg
+*.iq
+*.debug.xml
+
+# Developer signing key — NEVER commit. Keep a secure backup elsewhere.
+developer_key.der
+*.der
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

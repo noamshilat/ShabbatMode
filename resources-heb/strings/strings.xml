@@ -3,15 +3,22 @@
     <string id="AppName">מצב שבת</string>
 
     <string id="AboutTitle">אודות מצב שבת</string>
-    <string id="AboutBody">פני שעון זה מציגות רק את השעה. האפליקציה אינה מכבה חיישנים או רדיו ברקע.
+    <string id="AboutBody">פני שעון אלה מציגות רק את השעה. האפליקציה אינה מכבה לבד חיישנים או רדיו. יש לבצע את הצעדים הבאים ידנית.
 
-לפני כניסת השבת:
-1. עברו לפני שעון אלה.
-2. הגדרות &gt; מערכת &gt; מנהל סוללה &gt; חיסכון בסוללה: הפעילו ניתוק מהטלפון, ביטול מעקב פעילות, כיבוי דופק בפרק היד, כיבוי בלוטות' וכיבוי Wi-Fi. הפעילו את מצב חיסכון בסוללה.
-3. הגדרות &gt; קישוריות &gt; מצב טיסה: דלוק.
-4. הפעילו "נא לא להפריע".
+— לפני שבת —
+1. טעינה מלאה של השעון.
+2. החליפו לפני השעון הזה.
+3. Settings &gt; System &gt; Power Manager &gt; Battery Saver &gt; Edit Current: סמנו Disconnect Phone, Disable Activity Tracking, Disable Wrist HR, Disable Pulse Ox, Disable Bluetooth, Disable Wi-Fi. השאירו Disable Watch Face לא מסומן.
+4. הפעילו Battery Saver: ON.
+5. Settings &gt; Connectivity &gt; Airplane Mode: ON.
+6. Settings &gt; Sound &amp; Vibration &gt; Do Not Disturb: ON.
 
-במוצאי שבת, בטלו את השלבים האלה וחזרו לפני השעון הרגילות שלכם.
+— במוצאי שבת —
+1. Airplane Mode: OFF.
+2. Do Not Disturb: OFF.
+3. Battery Saver: OFF.
+4. החזירו את פני השעון הרגילות שלכם.
+5. פתחו את Garmin Connect בטלפון לסנכרון.
 
-האפליקציה היא כלי בלבד ואינה הוראה הלכתית. יש להיוועץ ברב.</string>
+האפליקציה כלי בלבד ולא פסק הלכה. היוועצו ברב.</string>
 </strings>

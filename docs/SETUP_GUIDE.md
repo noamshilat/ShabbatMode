@@ -1,74 +1,112 @@
-# Shabbat Mode — Setup Guide
+# מדריך שימוש — Shabbat Mode
 
-This Garmin watch face shows only the time. **It does not turn off your watch's sensors or radios automatically** — Garmin's Connect IQ platform does not allow third-party apps to do that.
+פני שעון מינימליסטיות לגרמין שמציגות רק את השעה. **האפליקציה לא מכבה לבד את החיישנים והרדיו של השעון** — פלטפורמת Connect IQ של גרמין לא מאפשרת לאפליקציות צד שלישי לעשות זאת. כדי להגיע לחוויה של "שעון רגיל בלבד" בשבת, יש לבצע כמה פעולות ידניות בהגדרות השעון לפני שבת, ולבטל אותן במוצאי שבת.
 
-To prepare your watch for Shabbat in a way that minimizes background activity (heart rate, steps, sleep tracking, Bluetooth, Wi-Fi), follow the steps below **before Shabbat begins**.
+המדריך הזה מסביר בדיוק מה לעשות. שמות התפריטים בשעון מופיעים באנגלית כי ממשק Garmin לא תומך בעברית — אבל הצעדים זהים בכל מכשיר Forerunner 265 ו-Fenix 8 AMOLED.
 
 ---
 
-## Before Shabbat
+## לפני שבת (לפני הדלקת נרות)
 
-### 1. Charge the watch fully
+### 1. טעינה מלאה של השעון
+חברו את השעון למטען בשעות אחר הצהריים של יום שישי. השעון אמור להגיע לטעינה מלאה לפני כניסת השבת כדי לעבור את השבת בלי התערבות.
 
-Plug it in on Friday afternoon so it lasts through Shabbat without intervention.
+### 2. החלפה לפני השעון "Shabbat Mode"
+- מהשעון: לחיצה ארוכה על פני השעון → **Edit Watch Face** → בחרו **Shabbat Mode** מהרשימה.
+- או מהטלפון: פתחו את אפליקציית **Connect IQ Mobile** → **My Device** → **Watch Face** → בחרו **Shabbat Mode**.
 
-### 2. Switch to the Shabbat Mode watch face
+### 3. הגדרת מצב חיסכון בסוללה לכיבוי כל הרקע
+נווטו אל: `Settings` → `System` → `Power Manager` → `Battery Saver` → `Edit Current`.
 
-- Long-press the watch face → **Edit Watch Face** → choose **Shabbat Mode** from the list.
-- Or from your phone: open **Connect IQ Mobile** → **My Device** → **Watch Face** → select **Shabbat Mode**.
+סמנו את **כל** התיבות הבאות:
+- ☑ **Disconnect Phone** — ניתוק מהטלפון
+- ☑ **Disable Activity Tracking** — מבטל ספירת צעדים, קומות, דקות פעילות, מעקב שינה ו-Move IQ
+- ☑ **Disable Wrist Heart Rate** — כיבוי מד הדופק בפרק היד
+- ☑ **Disable Pulse Ox** — כיבוי חיישן רוויית החמצן
+- ☑ **Disable Bluetooth** — כיבוי בלוטות'
+- ☑ **Disable Wi-Fi** — כיבוי Wi-Fi
+- ☐ **Disable Watch Face** — **השאירו לא מסומן**, אחרת השעון יחליף את פני השעון של Shabbat Mode בשעון מערכת בסיסי
+- **Brightness** → לבחור את הרמה הנמוכה הנוחה לכם
 
-### 3. Configure Battery Saver to disable everything
+### 4. הפעלת מצב חיסכון בסוללה
+באותו תפריט: הפכו את **Battery Saver** למצב **ON**.
+תראו אייקון של עלה/סוללה בראש המסך — זה אומר שהמצב פעיל.
 
-`Settings` → `System` → `Power Manager` → `Battery Saver` → `Edit Current`.
-
-Enable each of these:
-- ☑ Disconnect Phone
-- ☑ Disable Activity Tracking *(turns off steps, floors, intensity minutes, sleep tracking, Move IQ)*
-- ☑ Disable Wrist Heart Rate
-- ☑ Disable Pulse Ox
-- ☑ Disable Bluetooth
-- ☑ Disable Wi-Fi
-- ☑ Disable Watch Face *(optional — leaves a simple system clock; recommended to keep this **off** so your Shabbat Mode face still shows)*
-- ☑ Brightness: lowest comfortable setting
-
-### 4. Turn Battery Saver ON
-
-Same menu → toggle Battery Saver to **ON**.
-
-### 5. Enable Airplane Mode
-
+### 5. הפעלת מצב טיסה (Airplane Mode)
 `Settings` → `Connectivity` → `Airplane Mode` → **ON**.
+זה מבטיח שכל הרדיו (בלוטות', Wi-Fi, ANT+) כבוי לחלוטין — שכבת ביטחון נוספת מעל Battery Saver.
 
-This kills all radios as a belt-and-suspenders measure on top of Battery Saver.
-
-### 6. Enable Do Not Disturb
-
+### 6. הפעלת "נא לא להפריע" (Do Not Disturb)
 `Settings` → `Sound & Vibration` → `Do Not Disturb` → **ON**.
+מבטל רטטים והתראות שעלולים לעבור גם במצב טיסה.
 
-### 7. Verify
+### 7. בדיקה אחרונה לפני כניסת השבת
+- הסתכלו על פני השעון: צריכים להיראות רק `HH:MM` ומתחת `🕯️ שבת שלום`.
+- הזיזו את היד — לא אמור לקרות כלום (אין רטט, אין הדלקת מסך נוסף, אין התראות).
+- אם משהו עדיין מגיב — חזרו על שלבים 3–6.
 
-Look at the watch face. You should see only `HH:MM`. Tap and shake the wrist — nothing should respond, vibrate, or change. If notifications still come through, re-check Airplane Mode and Bluetooth.
-
----
-
-## After Havdalah
-
-1. Disable Airplane Mode.
-2. Disable Do Not Disturb.
-3. Disable Battery Saver.
-4. Switch back to your regular watch face.
+✅ עכשיו השעון מוכן. שבת שלום!
 
 ---
 
-## Halachic disclaimer
+## אחרי שבת (במוצאי שבת, לאחר הבדלה)
 
-This app is a software tool. It is not a ruling on whether wearing a smartwatch on Shabbat is permitted or how it must be configured. Consult your Rav for guidance specific to your situation.
+הסדר הוא הפוך מהסדר של לפני שבת. בצעו את הצעדים אחד אחרי השני כדי להחזיר את השעון להתנהגות הרגילה שלו.
+
+### 1. ביטול מצב טיסה
+`Settings` → `Connectivity` → `Airplane Mode` → **OFF**.
+תוך כמה שניות הבלוטות' יתחיל לחפש את הטלפון שלכם.
+
+### 2. ביטול "נא לא להפריע"
+`Settings` → `Sound & Vibration` → `Do Not Disturb` → **OFF**.
+
+### 3. כיבוי מצב חיסכון בסוללה
+`Settings` → `System` → `Power Manager` → `Battery Saver` → **OFF**.
+ברגע ש-Battery Saver כבוי — מד הדופק, ספירת הצעדים, מעקב השינה, Bluetooth ו-Wi-Fi חוזרים לפעולה אוטומטית בהתאם להגדרות הרגילות של השעון.
+
+> אין צורך להיכנס שוב ל-`Edit Current` ולבטל את הסימנים שסימנתם. ההגדרות נשמרות לפעם הבאה — בשבת הבאה תפעילו את Battery Saver שוב והוא ייכנס למצב שכבר הגדרתם.
+
+### 4. החזרה לפני השעון הרגילות שלכם
+- מהשעון: לחיצה ארוכה על פני השעון → **Edit Watch Face** → בחרו את פני השעון שאתם משתמשים בהן בימי חול.
+- או מהטלפון: **Connect IQ Mobile** → **My Device** → **Watch Face** → בחרו את הפנים הרגילות.
+
+### 5. סנכרון עם הטלפון
+פתחו את אפליקציית **Garmin Connect** בטלפון. השעון יסתנכרן אוטומטית — נתוני שינה (אם השעון תפס משהו לפני שכיביתם), נתוני יום ראשון, וכו'.
+
+### 6. בדיקה שהכל חזר
+- מד הדופק על פרק היד — אמור להחזיר ערך תוך 10–30 שניות.
+- ספירת צעדים — אמורה להתחיל לעלות ברגע שהולכים.
+- התראות מהטלפון (WhatsApp, שיחות) — אמורות להגיע לשעון.
+
+✅ השעון חזר לפעולה רגילה.
 
 ---
 
-## Tested devices
+## שאלות נפוצות
 
-- Forerunner 265
-- Fenix 8 47mm AMOLED
+### האם מספיק להחליף רק לפני השעון בלי לעשות את שאר הצעדים?
+לא. פני השעון בלבד מסתירות מידע מהמסך, אבל החיישנים, הבלוטות' וה-Wi-Fi ממשיכים לפעול ברקע. כדי להפסיק באמת את הפעילות הזו צריך **גם** Battery Saver וגם Airplane Mode.
 
-The exact menu wording may differ slightly between firmware versions. The paths above are correct as of API levels 5.2 (FR 265) and 6.0 (Fenix 8 AMOLED).
+### מה קורה לסוללה אם משאירים את הכל ככה?
+ב-Battery Saver עם כל ההגדרות מסומנות, הסוללה מחזיקה כמה שבועות. שבת אחת זה אפס בעיה.
+
+### האם השעון יודיע לי על שיחות או הודעות?
+לא — לא ב-Airplane Mode. אם תרצו לקבל התראות בכל זאת (לא מומלץ הלכתית), בטלו את שלב 5 (מצב טיסה) אבל זה יחזיר את הבלוטות' לפעולה.
+
+### למה התפריט בשעון באנגלית ולא בעברית?
+שעוני Garmin לא תומכים בעברית בממשק המשתמש. רק הטקסט בתוך אפליקציות (כמו זו) יכול להיות בעברית.
+
+---
+
+## הסתייגות הלכתית
+
+האפליקציה הזו היא כלי טכנולוגי, לא פסק הלכה. כל אחד צריך להיוועץ ברב שלו לגבי השאלה האם וכיצד מותר לחבוש שעון חכם בשבת. גם בהגדרות שמתוארות כאן, השעון עדיין מבצע פעולות פנימיות (שעון פנימי, רענון מסך AOD) שיתכן ויש להן משמעות הלכתית.
+
+---
+
+## פרטי מכשירים שנבדקו
+
+- **Forerunner 265** (תצוגת AMOLED, 416×416, API 5.2)
+- **Fenix 8 AMOLED 47 מ"מ** (תצוגת AMOLED, 454×454, API 6.0)
+
+ניסוח התפריטים עשוי להשתנות מעט בין גרסאות קושחה. הנתיבים שמופיעים במדריך נכונים נכון לתאריך הפרסום.

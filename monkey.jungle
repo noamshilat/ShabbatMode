@@ -3,3 +3,6 @@ project.manifest = manifest.xml
 base.sourcePath = source
 base.resourcePath = resources
 base.lang.heb = resources-heb
+
+fr265.resourcePath = resources-fr265;$(base.resourcePath)
+fenix847mm.resourcePath = resources-fenix847mm;$(base.resourcePath)

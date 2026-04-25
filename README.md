@@ -75,8 +75,10 @@ ShabbatMode/
 
 ## TODO before submission
 
-- [ ] Add `resources-launcher/launcher_icon.png` (square, recommended 80×80 for store, plus per-device launcher_icon at 40×40 in `resources/drawables/`).
-- [ ] Verify device IDs in `manifest.xml` against installed SDK.
-- [ ] Take simulator screenshots for the store listing.
-- [ ] Decide pricing (recommend free).
-- [ ] Write the Connect IQ Store description (English + Hebrew).
+- [x] Per-device launcher icons (60×60 fr265, 65×65 fenix847mm).
+- [x] Verify device IDs in `manifest.xml` against installed SDK.
+- [x] Connect IQ Store description (English + Hebrew) — see `docs/STORE_LISTING.md`.
+- [ ] Take simulator screenshots: simulator menu → File → Capture Screenshot, one per device.
+- [ ] Set up support email + privacy policy URL (see `docs/STORE_LISTING.md`).
+- [ ] Real-device testing on at least one of the two target watches.
+- [ ] Submit to Connect IQ Store.

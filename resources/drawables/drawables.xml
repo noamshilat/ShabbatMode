@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <drawables>
     <bitmap id="LauncherIcon" filename="launcher_icon.png" />
+    <bitmap id="ShabbatShalom" filename="shabbat_shalom.png" />
+    <bitmap id="ShabbatShalomDim" filename="shabbat_shalom_aod.png" />
 </drawables>

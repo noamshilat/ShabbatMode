@@ -18,7 +18,7 @@
                 If a build fails with "Unknown device", replace these IDs with the
                 values reported by your SDK Manager.
             -->
-            <iq:product id="forerunner265"/>
+            <iq:product id="fr265"/>
             <iq:product id="fenix847mm"/>
         </iq:products>
 

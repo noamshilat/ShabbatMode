@@ -33,20 +33,24 @@ The Connect IQ platform does not allow third-party apps to disable hardware sens
 
 Before Shabbat:
 1. Charge the watch fully.
-2. Settings - System - Power Manager - Battery Saver - Edit Current. Enable: Disconnect Phone, Disable Activity Tracking, Disable Wrist HR, Disable Pulse Ox, Disable Bluetooth, Disable Wi-Fi. Leave "Disable Watch Face" unchecked.
-3. Turn Battery Saver ON.
-4. Settings - Connectivity - Airplane Mode: ON.
-5. Settings - Sound and Vibration - Do Not Disturb: ON.
-6. Press the activity-start button, find "Shabbat Mode" in the activity list, press Start.
+2. Turn off all alarms (Clock app) - alarms override Do Not Disturb. Also disable Auto Sleep Mode if its schedule overlaps Shabbat hours.
+3. Settings - System - Power Manager - Battery Saver - Edit Current. Enable: Disconnect Phone, Disable Activity Tracking, Disable Wrist HR, Disable Pulse Ox, Disable Bluetooth, Disable Wi-Fi. Set Brightness to a comfortable low level. Leave "Disable Watch Face" unchecked.
+4. Turn Battery Saver ON.
+5. Settings - Connectivity - Airplane Mode: ON.
+6. Settings - Sound and Vibration - Do Not Disturb: ON.
+7. Defensive layer (optional): Settings - System - Display - Gesture: OFF. Settings - System - Auto Lock - During Watch Mode: ON.
+8. Press the activity-start button, find "Shabbat Mode", press Start.
 
 After Havdalah:
-1. Long-press the menu button (about 2 seconds) to exit Shabbat Mode. If asked to save, choose Discard.
-2. Airplane Mode: OFF.
-3. Do Not Disturb: OFF.
-4. Battery Saver: OFF.
-5. Open Garmin Connect on your phone to sync.
+1. Long-press the menu button (about 2 seconds) to exit. If asked to save, choose Discard.
+2. Restore Auto Lock and Wrist Gesture if you changed them.
+3. Airplane Mode: OFF.
+4. Do Not Disturb: OFF.
+5. Battery Saver: OFF.
+6. Re-enable alarms and Auto Sleep Mode if you turned them off.
+7. Open Garmin Connect on your phone to sync.
 
-Result: heart rate, steps, sleep, notifications, Bluetooth, and your normal watch face all resume exactly as before. The Battery Saver checkbox configuration is saved, so next Friday only steps 3, 4, 5, 6 are needed.
+Result: heart rate, steps, sleep, notifications, Bluetooth, and your normal watch face all resume exactly as before. The Battery Saver checkbox configuration is saved, so most weeks the routine is just steps 4, 5, 6, 8 - about 30 seconds.
 
 Halachic note: This app is a software tool, not a Halachic ruling. Consult your Rav about whether and how to wear a smartwatch on Shabbat. Some hardware sensors (accelerometer, gyroscope, magnetometer, barometer, thermometer) cannot be disabled by any setting or app on any smartwatch — they remain electrically active as long as the watch has power.
 
@@ -73,20 +77,24 @@ Shabbat Mode היא אפליקציית מסך מלא (לא פני שעון) שה
 
 לפני שבת:
 1. טעינה מלאה של השעון.
-2. Settings - System - Power Manager - Battery Saver - Edit Current. סמנו: Disconnect Phone, Disable Activity Tracking, Disable Wrist HR, Disable Pulse Ox, Disable Bluetooth, Disable Wi-Fi. השאירו "Disable Watch Face" לא מסומן.
-3. הפעילו Battery Saver: ON.
-4. Settings - Connectivity - Airplane Mode: ON.
-5. Settings - Sound and Vibration - Do Not Disturb: ON.
-6. לחצו על כפתור הפעלת פעילות, מצאו "Shabbat Mode" ברשימה, לחצו Start.
+2. כבו את כל האזעקות (Clock app) - אזעקות עוברות מעל Do Not Disturb. כבו גם Auto Sleep Mode אם הוא חל על שעות השבת.
+3. Settings - System - Power Manager - Battery Saver - Edit Current. סמנו: Disconnect Phone, Disable Activity Tracking, Disable Wrist HR, Disable Pulse Ox, Disable Bluetooth, Disable Wi-Fi. הגדירו Brightness לרמה נמוכה. השאירו "Disable Watch Face" לא מסומן.
+4. הפעילו Battery Saver: ON.
+5. Settings - Connectivity - Airplane Mode: ON.
+6. Settings - Sound and Vibration - Do Not Disturb: ON.
+7. שכבת הגנה (אופציונלי): Settings - System - Display - Gesture: OFF. Settings - System - Auto Lock - During Watch Mode: ON.
+8. לחצו על כפתור הפעלת פעילות, מצאו "Shabbat Mode", לחצו Start.
 
 במוצאי שבת:
 1. לחיצה ארוכה (כ-2 שניות) על כפתור התפריט כדי לצאת. אם נשאלים על שמירה, בחרו Discard.
-2. Airplane Mode: OFF.
-3. Do Not Disturb: OFF.
-4. Battery Saver: OFF.
-5. פתחו Garmin Connect לסנכרון.
+2. החזירו Auto Lock ו-Gesture אם שיניתם אותם.
+3. Airplane Mode: OFF.
+4. Do Not Disturb: OFF.
+5. Battery Saver: OFF.
+6. הפעילו מחדש אזעקות ו-Auto Sleep Mode אם כיביתם.
+7. פתחו Garmin Connect לסנכרון.
 
-תוצאה: דופק, צעדים, שינה, התראות, Bluetooth ופני השעון הרגילות שלכם כולם חוזרים בדיוק כמו שהיו. הקונפיגורציה של Battery Saver נשמרת, אז ביום שישי הבא רק שלבים 3, 4, 5, 6 דרושים.
+תוצאה: דופק, צעדים, שינה, התראות, Bluetooth ופני השעון הרגילות שלכם כולם חוזרים בדיוק כמו שהיו. הקונפיגורציה של Battery Saver נשמרת, אז ברוב השבועות השגרה היא שלבים 4, 5, 6, 8 - בערך 30 שניות.
 
 הסתייגות הלכתית: האפליקציה היא כלי תוכנה ולא פסק הלכה. היוועצו ברב לגבי השאלה האם וכיצד מותר לחבוש שעון חכם בשבת. חיישנים פיזיים מסוימים (חיישן האצה, גיירוסקופ, מצפן, ברומטר, חיישן חום) אינם ניתנים לכיבוי באמצעות הגדרות או אפליקציה בשום שעון חכם — הם פעילים חשמלית כל עוד יש לשעון מתח.
 

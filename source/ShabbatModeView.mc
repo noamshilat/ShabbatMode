@@ -87,7 +87,9 @@ class ShabbatModeView extends WatchUi.View {
 
     // Sentinel screen: shown when wrist HR is active or phone is still
     // connected. Refuses to show the time view until the user turns
-    // those off in System Settings.
+    // those off in System Settings. All text uses small fonts and short
+    // labels because the round AMOLED screen clips wide content near the
+    // top and bottom of the display.
     private function drawSensorWarning(
         dc as Graphics.Dc,
         cx as Lang.Number,
@@ -97,42 +99,41 @@ class ShabbatModeView extends WatchUi.View {
         hrActive as Lang.Boolean,
         phoneActive as Lang.Boolean
     ) as Void {
-        // Title bar
         dc.setColor(0xFF4444, Graphics.COLOR_TRANSPARENT);
         dc.drawText(
             cx,
-            cy - (height * 0.28).toNumber(),
-            Graphics.FONT_MEDIUM,
-            "Disable in Settings:",
+            cy - (height * 0.22).toNumber(),
+            Graphics.FONT_SMALL,
+            "Please disable:",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
 
-        var y = cy - (height * 0.10).toNumber();
+        var y = cy - (height * 0.06).toNumber();
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         if (hrActive) {
-            dc.drawText(cx, y, Graphics.FONT_SMALL, "- Wrist Heart Rate",
+            dc.drawText(cx, y, Graphics.FONT_TINY, "Wrist HR",
                         Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-            y += (height * 0.07).toNumber();
+            y += (height * 0.08).toNumber();
         }
         if (phoneActive) {
-            dc.drawText(cx, y, Graphics.FONT_SMALL, "- Bluetooth (Airplane Mode)",
+            dc.drawText(cx, y, Graphics.FONT_TINY, "Bluetooth",
                         Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-            y += (height * 0.07).toNumber();
+            y += (height * 0.08).toNumber();
         }
 
         dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
         dc.drawText(
             cx,
-            cy + (height * 0.22).toNumber(),
-            Graphics.FONT_TINY,
-            "Settings then System",
+            cy + (height * 0.18).toNumber(),
+            Graphics.FONT_XTINY,
+            "Battery Saver +",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
         dc.drawText(
             cx,
-            cy + (height * 0.30).toNumber(),
-            Graphics.FONT_TINY,
-            "or Connectivity",
+            cy + (height * 0.25).toNumber(),
+            Graphics.FONT_XTINY,
+            "Airplane Mode",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
     }

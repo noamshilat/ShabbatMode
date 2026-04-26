@@ -3,15 +3,23 @@
     <string id="AppName">Shabbat Mode</string>
 
     <string id="AboutTitle">About Shabbat Mode</string>
-    <string id="AboutBody">This watch face shows only the current time. It does not stop the watch's sensors or radios on its own.
+    <string id="AboutBody">Shabbat Mode is a full-screen app, not a watch face. Start it from the activity menu before Shabbat. It shows only the time and a "Shabbat Shalom" greeting. All buttons and touches are blocked while it runs. To exit, long-press the menu button.
+
+The app cannot disable wrist HR, Pulse Ox, Bluetooth, or activity tracking on its own. You must do that in the device Settings before Shabbat. The app will refuse to display normally if HR or phone are still active.
 
 Before Shabbat:
-1. Switch to this watch face.
-2. Settings &gt; System &gt; Power Manager &gt; Battery Saver: enable Disconnect Phone, Disable Activity Tracking, Disable Wrist HR, Disable Bluetooth, Disable Wi-Fi. Turn Battery Saver ON.
-3. Settings &gt; Connectivity &gt; Airplane Mode: ON.
-4. Enable Do Not Disturb.
+1. Settings - System - Power Manager - Battery Saver - Edit Current. Enable: Disconnect Phone, Disable Activity Tracking, Disable Wrist HR, Disable Pulse Ox, Disable Bluetooth, Disable Wi-Fi.
+2. Turn Battery Saver ON.
+3. Settings - Connectivity - Airplane Mode: ON.
+4. Settings - Sound and Vibration - Do Not Disturb: ON.
+5. Open the activity list and start Shabbat Mode.
 
-After Havdalah, reverse these steps and switch back to your normal watch face.
+After Havdalah:
+1. Long-press the menu button to exit Shabbat Mode. Discard if asked to save.
+2. Airplane Mode: OFF.
+3. Do Not Disturb: OFF.
+4. Battery Saver: OFF.
+5. Open Garmin Connect on the phone to sync.
 
 This app is a tool, not a Halachic ruling. Consult your Rav.</string>
 </strings>

@@ -1,28 +1,37 @@
+using Toybox.Activity;
 using Toybox.Graphics;
 using Toybox.Lang;
 using Toybox.System;
-using Toybox.Time.Gregorian;
+using Toybox.Timer;
 using Toybox.WatchUi;
 
-class ShabbatModeView extends WatchUi.WatchFace {
-
-    private var _inLowPower as Lang.Boolean = false;
-    private var _shiftIndex as Lang.Number = 0;
-    private const _SHIFTS = [ [0, 0], [1, 0], [0, 1], [-1, 0], [0, -1], [1, 1], [-1, -1] ];
+class ShabbatModeView extends WatchUi.View {
 
     private var _greeting as WatchUi.BitmapResource?;
-    private var _greetingDim as WatchUi.BitmapResource?;
+    private var _timer as Timer.Timer?;
 
     function initialize() {
-        WatchFace.initialize();
+        View.initialize();
     }
 
     function onLayout(dc as Graphics.Dc) as Void {
         _greeting = WatchUi.loadResource(Rez.Drawables.ShabbatShalom) as WatchUi.BitmapResource;
-        _greetingDim = WatchUi.loadResource(Rez.Drawables.ShabbatShalomDim) as WatchUi.BitmapResource;
     }
 
     function onShow() as Void {
+        _timer = new Timer.Timer();
+        _timer.start(method(:onTick), 60 * 1000, true);
+    }
+
+    function onHide() as Void {
+        if (_timer != null) {
+            _timer.stop();
+            _timer = null;
+        }
+    }
+
+    function onTick() as Void {
+        WatchUi.requestUpdate();
     }
 
     function onUpdate(dc as Graphics.Dc) as Void {
@@ -34,63 +43,105 @@ class ShabbatModeView extends WatchUi.WatchFace {
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
         dc.clear();
 
-        var offset = _SHIFTS[_shiftIndex];
+        var hrActive = isHeartRateActive();
+        var phoneActive = isPhoneConnected();
 
+        if (hrActive || phoneActive) {
+            drawSensorWarning(dc, cx, cy, width, height, hrActive, phoneActive);
+            return;
+        }
+
+        drawTime(dc, cx, cy, height);
+        drawGreeting(dc, cx, cy, height);
+    }
+
+    private function isHeartRateActive() as Lang.Boolean {
+        var info = Activity.getActivityInfo();
+        return info != null && info.currentHeartRate != null;
+    }
+
+    private function isPhoneConnected() as Lang.Boolean {
+        return System.getDeviceSettings().phoneConnected;
+    }
+
+    private function drawTime(dc as Graphics.Dc, cx as Lang.Number, cy as Lang.Number, height as Lang.Number) as Void {
         var timeString = formatTime();
-        var timeFont = _inLowPower
-            ? Graphics.FONT_NUMBER_MEDIUM
-            : Graphics.FONT_NUMBER_THAI_HOT;
-        var timeColor = _inLowPower
-            ? Graphics.COLOR_LT_GRAY
-            : Graphics.COLOR_WHITE;
-
-        // Pull the time slightly above center so the greeting fits below
-        var timeY = cy + offset[1] - (height * 0.06).toNumber();
-
-        dc.setColor(timeColor, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.drawText(
-            cx + offset[0],
-            timeY,
-            timeFont,
+            cx,
+            cy - (height * 0.06).toNumber(),
+            Graphics.FONT_NUMBER_THAI_HOT,
             timeString,
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
+    }
 
-        var bmp = _inLowPower ? _greetingDim : _greeting;
-        if (bmp != null) {
-            var bw = bmp.getWidth();
-            var bh = bmp.getHeight();
-            var bx = cx - bw / 2 + offset[0];
-            var by = cy + (height * 0.18).toNumber() + offset[1] - bh / 2;
-            dc.drawBitmap(bx, by, bmp);
+    private function drawGreeting(dc as Graphics.Dc, cx as Lang.Number, cy as Lang.Number, height as Lang.Number) as Void {
+        if (_greeting == null) { return; }
+        var bw = _greeting.getWidth();
+        var bh = _greeting.getHeight();
+        var bx = cx - bw / 2;
+        var by = cy + (height * 0.18).toNumber() - bh / 2;
+        dc.drawBitmap(bx, by, _greeting);
+    }
+
+    // Sentinel screen: shown when wrist HR is active or phone is still
+    // connected. Refuses to show the time view until the user turns
+    // those off in System Settings.
+    private function drawSensorWarning(
+        dc as Graphics.Dc,
+        cx as Lang.Number,
+        cy as Lang.Number,
+        width as Lang.Number,
+        height as Lang.Number,
+        hrActive as Lang.Boolean,
+        phoneActive as Lang.Boolean
+    ) as Void {
+        // Title bar
+        dc.setColor(0xFF4444, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(
+            cx,
+            cy - (height * 0.28).toNumber(),
+            Graphics.FONT_MEDIUM,
+            "Disable in Settings:",
+            Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
+        );
+
+        var y = cy - (height * 0.10).toNumber();
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        if (hrActive) {
+            dc.drawText(cx, y, Graphics.FONT_SMALL, "- Wrist Heart Rate",
+                        Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+            y += (height * 0.07).toNumber();
         }
-    }
+        if (phoneActive) {
+            dc.drawText(cx, y, Graphics.FONT_SMALL, "- Bluetooth (Airplane Mode)",
+                        Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+            y += (height * 0.07).toNumber();
+        }
 
-    function onPartialUpdate(dc as Graphics.Dc) as Void {
-        _shiftIndex = (_shiftIndex + 1) % _SHIFTS.size();
-        onUpdate(dc);
-    }
-
-    function onEnterSleep() as Void {
-        _inLowPower = true;
-        WatchUi.requestUpdate();
-    }
-
-    function onExitSleep() as Void {
-        _inLowPower = false;
-        _shiftIndex = 0;
-        WatchUi.requestUpdate();
-    }
-
-    function onHide() as Void {
+        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(
+            cx,
+            cy + (height * 0.22).toNumber(),
+            Graphics.FONT_TINY,
+            "Settings then System",
+            Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
+        );
+        dc.drawText(
+            cx,
+            cy + (height * 0.30).toNumber(),
+            Graphics.FONT_TINY,
+            "or Connectivity",
+            Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
+        );
     }
 
     private function formatTime() as Lang.String {
         var clock = System.getClockTime();
-        var settings = System.getDeviceSettings();
         var hour = clock.hour;
 
-        if (!settings.is24Hour) {
+        if (!System.getDeviceSettings().is24Hour) {
             hour = hour % 12;
             if (hour == 0) { hour = 12; }
         }

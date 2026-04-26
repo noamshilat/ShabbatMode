@@ -14,6 +14,6 @@ class ShabbatModeApp extends Application.AppBase {
     }
 
     function getInitialView() {
-        return [ new ShabbatModeView() ];
+        return [ new ShabbatModeView(), new ShabbatModeDelegate() ];
     }
 }

@@ -2,34 +2,24 @@
 <iq:manifest version="3" xmlns:iq="http://www.garmin.com/xml/connectiq">
     <iq:application
         id="449e69f7e45d4e72aaffb66c5d0b5cb8"
-        type="watchface"
+        type="watch-app"
         name="@Strings.AppName"
         entry="ShabbatModeApp"
         launcherIcon="@Drawables.LauncherIcon"
         minApiLevel="3.2.0">
 
         <iq:products>
-            <!--
-                Device IDs must match exactly what the installed Connect IQ SDK
-                uses. After installing the SDK, verify the IDs in:
-                ~/Library/Application Support/Garmin/ConnectIQ/Devices/<device>/compiler.json
-                or via the SDK Manager UI.
-
-                If a build fails with "Unknown device", replace these IDs with the
-                values reported by your SDK Manager.
-            -->
             <iq:product id="fr265"/>
             <iq:product id="fenix847mm"/>
         </iq:products>
 
         <iq:permissions>
             <!--
-                INTENTIONALLY EMPTY.
-                A Shabbat watch face must not request HR, location, communication,
-                or background permissions. Empty permission set:
-                  - speeds up Garmin Store review
-                  - reassures users
-                  - aligns with the Halachic intent of doing nothing in the background
+                Intentionally empty. The app does not request access to any
+                sensor, location, network, or background channel. It only
+                reads heart-rate state and phoneConnected for the on-screen
+                "please disable" sentinel — both are public read-only fields
+                that do not require permissions.
             -->
         </iq:permissions>
 

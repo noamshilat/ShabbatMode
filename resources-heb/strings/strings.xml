@@ -3,22 +3,23 @@
     <string id="AppName">מצב שבת</string>
 
     <string id="AboutTitle">אודות מצב שבת</string>
-    <string id="AboutBody">פני שעון אלה מציגות רק את השעה. האפליקציה אינה מכבה לבד חיישנים או רדיו. יש לבצע את הצעדים הבאים ידנית.
+    <string id="AboutBody">Shabbat Mode היא אפליקציה במסך מלא, לא פני שעון. מפעילים אותה מתפריט הפעילויות לפני שבת. מציגה רק את השעה וברכת "שבת שלום". בזמן שהאפליקציה רצה, כל הכפתורים והמגעים חסומים. כדי לצאת, יש ללחוץ ארוכות על כפתור התפריט.
 
-— לפני שבת —
-1. טעינה מלאה של השעון.
-2. החליפו לפני השעון הזה.
-3. Settings &gt; System &gt; Power Manager &gt; Battery Saver &gt; Edit Current: סמנו Disconnect Phone, Disable Activity Tracking, Disable Wrist HR, Disable Pulse Ox, Disable Bluetooth, Disable Wi-Fi. השאירו Disable Watch Face לא מסומן.
-4. הפעילו Battery Saver: ON.
-5. Settings &gt; Connectivity &gt; Airplane Mode: ON.
-6. Settings &gt; Sound &amp; Vibration &gt; Do Not Disturb: ON.
+האפליקציה אינה יכולה לכבות לבד את חיישן הדופק, Pulse Ox, Bluetooth או מעקב הפעילות. את זה צריך לעשות ידנית בהגדרות השעון לפני שבת. האפליקציה תסרב להציג את המסך הראשי אם הדופק או הטלפון עדיין פעילים.
 
-— במוצאי שבת —
-1. Airplane Mode: OFF.
-2. Do Not Disturb: OFF.
-3. Battery Saver: OFF.
-4. החזירו את פני השעון הרגילות שלכם.
+לפני שבת:
+1. Settings - System - Power Manager - Battery Saver - Edit Current. סמנו: Disconnect Phone, Disable Activity Tracking, Disable Wrist HR, Disable Pulse Ox, Disable Bluetooth, Disable Wi-Fi.
+2. הפעילו Battery Saver: ON.
+3. Settings - Connectivity - Airplane Mode: ON.
+4. Settings - Sound and Vibration - Do Not Disturb: ON.
+5. פתחו את רשימת הפעילויות והפעילו את Shabbat Mode.
+
+במוצאי שבת:
+1. לחיצה ארוכה על כפתור התפריט כדי לצאת מ-Shabbat Mode. אם נשאלים על שמירה, בחרו Discard.
+2. Airplane Mode: OFF.
+3. Do Not Disturb: OFF.
+4. Battery Saver: OFF.
 5. פתחו את Garmin Connect בטלפון לסנכרון.
 
-האפליקציה כלי בלבד ולא פסק הלכה. היוועצו ברב.</string>
+האפליקציה כלי בלבד, לא פסק הלכה. היוועצו ברב.</string>
 </strings>

@@ -1,84 +1,105 @@
 # Shabbat Mode
 
-A minimalist Garmin Connect IQ watch face for Shabbat-observant Jewish users. Displays only the current time on a black background. No complications, no notifications, no telemetry.
+A locked-down Garmin Connect IQ **device app** for Shabbat-observant Jewish users. When started from the activity menu, it shows only the time and a "🕯️ שבת שלום" greeting on a black background, blocks all touch and short button presses, keeps the screen at a fixed dim brightness, and refuses to display normally if the wrist heart-rate sensor or Bluetooth are still active. To exit, long-press the menu button.
 
 **Targets:** Forerunner 265 (416×416 AMOLED, API 5.2), Fenix 8 47mm AMOLED (454×454, API 6.0).
 
-> **Important:** A Connect IQ watch face cannot disable the watch's hardware sensors (HR, steps, sleep) or radios (Bluetooth, Wi-Fi) on its own — Garmin does not expose APIs for this. The user must enable Battery Saver and Airplane Mode manually before Shabbat. See [docs/SETUP_GUIDE.md](docs/SETUP_GUIDE.md).
+> **Important:** Connect IQ does not let any third-party app disable hardware sensors, Bluetooth, or background activity tracking on its own. The user must enable Battery Saver and Airplane Mode manually before Shabbat. The app's sentinel screen catches it if they forget. See [docs/SETUP_GUIDE.md](docs/SETUP_GUIDE.md) (Hebrew) for the full pre/post-Shabbat checklist.
+
+## Architecture
+
+This is a **Device App** (`type="watch-app"`), not a Watch Face. The choice was made to gain capabilities that Watch Faces fundamentally cannot have:
+
+- Block button presses and touch events via `BehaviorDelegate` returning `true`.
+- Keep the screen on continuously without relying on the user's AOD setting or being affected by wrist-gesture wake.
+- Lifecycle clearly bounded: user starts the activity Friday afternoon, exits Saturday night.
+
+The app **does not** call `ActivityRecording.startRecording()` — no `.fit` file is created and no sensor data is logged.
 
 ## Build
 
 ### One-time setup
 
-1. Install the **Connect IQ SDK Manager** from <https://developer.garmin.com/connect-iq/sdk/>.
-2. Open the SDK Manager, install the latest SDK and the device profiles for **Forerunner 265** and **Fenix 8 47mm AMOLED**.
-3. Install **VS Code** and the **Monkey C** extension (publisher: Garmin).
-4. Install a JDK (any LTS, e.g. `brew install openjdk@21`).
-5. Generate a developer signing key (one-time, never lose it):
+1. Install the **Connect IQ SDK Manager** from <https://developer.garmin.com/connect-iq/sdk/>. Install the latest SDK and the device profiles for **Forerunner 265** and **Fenix 8 47mm AMOLED**.
+2. Install **VS Code** and the **Monkey C** extension (publisher: Garmin).
+3. Install a JDK (any LTS, e.g. `brew install openjdk@21`).
+4. Generate a 4096-bit RSA developer signing key (one-time):
    ```sh
-   monkeyc --generate-key -o developer_key.der
+   openssl genrsa -out developer_key.pem 4096
+   openssl pkcs8 -topk8 -inform PEM -outform DER -in developer_key.pem -out developer_key.der -nocrypt
+   rm developer_key.pem
    ```
-   Keep `developer_key.der` out of git (already in `.gitignore`). Back it up somewhere safe — Garmin requires the same key for every future update.
+   Keep `developer_key.der` out of git (already in `.gitignore`). Back it up — Garmin requires the same key for every future update.
 
-### Verify device IDs
+### Build and simulate
 
-The IDs in `manifest.xml` (`forerunner265`, `fenix847mm`) must match the IDs your installed SDK uses. After installing the device profiles, check:
+```sh
+# Per-device debug builds
+monkeyc -f monkey.jungle -d fr265 -o bin/ShabbatMode-fr265.prg -y developer_key.der -w
+monkeyc -f monkey.jungle -d fenix847mm -o bin/ShabbatMode-fenix847mm.prg -y developer_key.der -w
 
+# Launch simulator and load (in two terminals or sequentially)
+connectiq &
+sleep 6
+monkeydo bin/ShabbatMode-fr265.prg fr265
 ```
-~/Library/Application Support/Garmin/ConnectIQ/Devices/
-```
 
-Each subfolder name is a device ID. Update `manifest.xml` if they differ.
-
-### Build & simulate
-
-In VS Code:
-
-- `Cmd+Shift+P` → **Monkey C: Build for Device** → pick the target.
-- `Cmd+Shift+P` → **Monkey C: Run** → launches the simulator. Use the simulator menu to toggle Always-On Display and 12/24h.
+In the simulator, **Settings → Connection** lets you toggle the simulated phone connection. Toggle phone connection OFF to see the normal time + greeting view. Toggle it ON to see the sensor-sentinel red warning screen.
 
 ### Sideload to a real watch
 
-1. Plug the watch in via USB.
-2. Run **Monkey C: Build for Device** to produce `bin/ShabbatMode.prg`.
-3. Copy `ShabbatMode.prg` to `GARMIN/Apps/` on the mounted watch volume.
-4. Eject. On the watch, long-press the face → Edit Watch Face → pick Shabbat Mode.
+```sh
+# On the watch, USB-connect to the Mac. The watch shows up as a removable volume.
+cp bin/ShabbatMode-fr265.prg /Volumes/GARMIN/GARMIN/Apps/
+diskutil eject /Volumes/GARMIN
+```
 
-## Submit to Connect IQ Store
+On the watch: open the activity list → if Shabbat Mode isn't there, **Add App** → Shabbat Mode. Press Start to launch.
 
-1. `Cmd+Shift+P` → **Monkey C: Export Project** → produces a signed `.iq` file.
-2. Sign in to <https://apps.garmin.com> with your Garmin developer account (free, you must be 18+).
-3. Dashboard → **Upload App** → select the `.iq` file.
-4. Fill in metadata: name, category=Watch Face, description (paste the setup guide), screenshots, privacy URL, support email.
-5. Submit. Garmin manual review typically takes a few business days to ~2 weeks.
+### Build a signed release `.iq` for the Connect IQ Store
 
-For each subsequent update: bump the `version` attribute in `manifest.xml`, rebuild, re-export, and upload.
+```sh
+monkeyc -e -f monkey.jungle -o bin/ShabbatMode.iq -y developer_key.der -r -w
+```
+
+The `.iq` bundles all device builds. Upload at <https://apps.garmin.com> → Dashboard → Upload an app.
 
 ## Project layout
 
 ```
 ShabbatMode/
-├── manifest.xml            App metadata, target devices, permissions (empty)
-├── monkey.jungle           Build config
+├── manifest.xml                     type="watch-app", target devices, permissions=[]
+├── monkey.jungle                    build config; per-device launcher icon paths
 ├── source/
-│   ├── ShabbatModeApp.mc   AppBase entry point
-│   └── ShabbatModeView.mc  WatchFace: onUpdate + onPartialUpdate (AOD)
+│   ├── ShabbatModeApp.mc            AppBase entry point
+│   ├── ShabbatModeView.mc           View: time + greeting + sensor sentinel
+│   └── ShabbatModeDelegate.mc       BehaviorDelegate: swallows all input
 ├── resources/
-│   ├── strings/strings.xml English strings
-│   ├── settings/           Read-only "About" page (setup checklist)
-│   └── drawables/          Launcher icon reference
-├── resources-heb/          Hebrew translations
-├── resources-launcher/     Store listing icon (TODO: add launcher_icon.png)
+│   ├── strings/strings.xml          English app name + About body
+│   ├── settings/                    Read-only About page (visible in Connect IQ Mobile)
+│   └── drawables/shabbat_shalom.png Bilingual greeting bitmap
+├── resources-heb/strings/strings.xml Hebrew translations
+├── resources-fr265/drawables/        60×60 candle launcher icon
+├── resources-fenix847mm/drawables/   65×65 candle launcher icon
+├── store_assets/                     Cover (500×500) and hero (1440×720) images
 └── docs/
-    └── SETUP_GUIDE.md      Pre-Shabbat checklist for users
+    ├── SETUP_GUIDE.md                Hebrew user manual (full pre/post Shabbat steps)
+    ├── STORE_LISTING.md              Bilingual Connect IQ Store description copy
+    └── privacy.html                  Bilingual privacy policy (hosted on GitHub Pages)
 ```
 
-## TODO before submission
+## TODO before resubmission
 
-- [x] Per-device launcher icons (60×60 fr265, 65×65 fenix847mm).
-- [x] Verify device IDs in `manifest.xml` against installed SDK.
-- [x] Connect IQ Store description (English + Hebrew) — see `docs/STORE_LISTING.md`.
-- [ ] Take simulator screenshots: simulator menu → File → Capture Screenshot, one per device.
-- [ ] Set up support email + privacy policy URL (see `docs/STORE_LISTING.md`).
-- [ ] Real-device testing on at least one of the two target watches.
-- [ ] Submit to Connect IQ Store.
+- [x] App type changed from watchface to watch-app.
+- [x] Input blocking via BehaviorDelegate.
+- [x] Sensor sentinel for wrist HR and phone connection.
+- [x] User guide rewritten for Device App flow.
+- [x] Store listing copy rewritten.
+- [ ] Take new simulator screenshots showing the Device App version (the previous shots were of the watch face).
+- [ ] Build new signed `.iq` and upload as a v2 update to the existing Connect IQ Store listing.
+
+## Notes for future updates
+
+- Bump `version` in the `iq:application` element of `manifest.xml` for every store submission.
+- Reuse the same `developer_key.der` for every update.
+- Test the sentinel screen by toggling simulator settings: Settings → Connection (phone connected on/off), Settings → User → Heart Rate (different values).
